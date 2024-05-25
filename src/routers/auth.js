@@ -7,6 +7,7 @@ export default function initRoutes(middleware) {
   const router = Router()
   router.post(
     '/register',
+    middleware,
     ensurePermissions({ RESTAURANT_OWNER: 'POST' }),
     ensureFields(
       {
@@ -42,7 +43,6 @@ export default function initRoutes(middleware) {
       },
       { limitTo: ['body'] }
     ),
-    middleware,
     authService.register
   )
   router.post(
